@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/bibleSnapOfficial/static/css/main.541193e2.css",
-    "main.js": "/bibleSnapOfficial/static/js/main.cefa2497.js",
+    "main.js": "/bibleSnapOfficial/static/js/main.549ef2c6.js",
     "static/js/453.87ed90b3.chunk.js": "/bibleSnapOfficial/static/js/453.87ed90b3.chunk.js",
     "index.html": "/bibleSnapOfficial/index.html",
     "main.541193e2.css.map": "/bibleSnapOfficial/static/css/main.541193e2.css.map",
-    "main.cefa2497.js.map": "/bibleSnapOfficial/static/js/main.cefa2497.js.map",
+    "main.549ef2c6.js.map": "/bibleSnapOfficial/static/js/main.549ef2c6.js.map",
     "453.87ed90b3.chunk.js.map": "/bibleSnapOfficial/static/js/453.87ed90b3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.541193e2.css",
-    "static/js/main.cefa2497.js"
+    "static/js/main.549ef2c6.js"
   ]
 }
