@@ -1,0 +1,66 @@
+/* custom-theme.css */
+:root {
+    --dark-background: #111113;
+    --dark-accent: #A07553;
+    --primary: #DE5435;
+    --secondary: #AB8364;
+  }
+  
+  /* Dark mode overrides */
+  [data-bs-theme="dark"] {
+    --bs-body-bg: #111113 !important;
+    --bs-body-color: #fff !important;
+    --bs-primary: #DE5435 !important;
+    --bs-secondary: #AC4D39 !important;
+    --bs-dark: #111113 !important;
+    --bs-info: #A07553 !important;
+  }
+  
+  /* Direct element overrides */
+  .bg-dark {
+    background-color: #111113 !important;
+  }
+  
+  .bg-primary {
+    background-color:#A07553!important;
+  }
+  
+  .bg-secondary {
+    background-color: #A07553 !important;
+  }
+  
+  .text-primary {
+    color: #6D2A1C !important;
+  }
+  
+  .text-secondary {
+    color: #AE796D !important;
+  }
+  
+  .text-info {
+    color: #A07553 !important;
+  }
+  
+  .border-secondary {
+    border-color: #4E160B !important;
+  }
+  
+  .btn-primary {
+    background-color: #9B675B !important;
+    border-color: #9B675B !important;
+  }
+  
+  .btn-primary:hover {
+    background-color: #9B675B !important;
+    border-color: #9B675B !important;
+  }
+  
+  .btn-secondary {
+    background-color: #AC4D39 !important;
+    border-color: #AC4D39 !important;
+  }
+  .notepad-container {
+    direction: ltr !important;
+    text-align: left !important;
+  }
+  

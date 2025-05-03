@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/BibleSnap/static/css/main.541193e2.css",
+    "main.js": "/BibleSnap/static/js/main.e3f408c0.js",
+    "static/js/453.87ed90b3.chunk.js": "/BibleSnap/static/js/453.87ed90b3.chunk.js",
+    "index.html": "/BibleSnap/index.html",
+    "main.541193e2.css.map": "/BibleSnap/static/css/main.541193e2.css.map",
+    "main.e3f408c0.js.map": "/BibleSnap/static/js/main.e3f408c0.js.map",
+    "453.87ed90b3.chunk.js.map": "/BibleSnap/static/js/453.87ed90b3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.541193e2.css",
+    "static/js/main.e3f408c0.js"
+  ]
+}
