@@ -16,7 +16,7 @@ import LanguageTab from './LanguageTab';
 import SearchTab from './SearchTab';
 
 const BibleApp = () => {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('home');
   const [verseOfDay, setVerseOfDay] = useState(null);
@@ -33,10 +33,10 @@ const BibleApp = () => {
   const [scrollToVerse, setScrollToVerse] = useState(null);
 
   // Add near the beginning of your component
-useEffect(() => {
-  // Set document theme attribute for Bootstrap 5 dark mode
-  document.documentElement.setAttribute('data-bs-theme', 'dark');
-}, []);
+  useEffect(() => {
+    document.documentElement.setAttribute('data-bs-theme', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
+  
   
   // Bible books data
   const bibleBooks = {

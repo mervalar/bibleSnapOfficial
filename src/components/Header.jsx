@@ -6,8 +6,14 @@ const Header = ({ darkMode, toggleDarkMode, searchQuery, setSearchQuery, handleS
     <header className={`${darkMode ? 'bg-dark' : 'bg-primary'} text-white shadow`}>
       <div className="container-fluid px-4 py-3 d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center">
-          <h1 className="h5 fw-bold mb-0"><img src="/Bible snap.png" alt="k" srcset="" width={40}/>Bible Snap</h1>
-        </div>
+        <h1 
+          className="text-xs font-bold mb-0" 
+          style={{ fontFamily: "'Playfair Display', serif",fontSize:"20px", fontStyle: "italic" }}
+        >
+          BibleSnap
+        </h1>
+
+      </div>
         
         <div className="d-flex align-items-center gap-3">
           <button onClick={toggleDarkMode} className="btn btn-link text-white p-1">

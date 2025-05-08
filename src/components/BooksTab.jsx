@@ -443,48 +443,92 @@ const BooksTab = ({
           <>
             {/* Chapter content */}
             {chapterContent ? (
-              <div className="bible-text  p-3">
-                {chapterContent.text.split('\n').map((line, index) => (
-                  line.trim() ? (
-                    <div 
-                      key={index} 
-                      className={`d-flex mb-2 position-relative
-                        ${selectedLine === index + 1 ? 'bg-primary bg-opacity-10' : ''}
-                        ${playingVerse === index + 1 ? 'bg-info bg-opacity-10' : ''}
-                        ${highlightedLines[index + 1] ? 'bg-warning bg-opacity-10' : ''}
-                        ${savedLines[index + 1] ? 'border-start border-secondary border-3 ps-2' : ''}
-                      `}
-                      onClick={(e) => handleLineClick(index + 1, e)}
-                    >
-                      <span className={`text-muted me-3 text-end ${selectedLine === index + 1 ? 'fw-bold text-primary' : ''}`} style={{ width: '30px' }}>
-                        {index + 1}
-                      </span>
-                      <span className="flex-grow-1">
-                        {line}
-                      </span>
-                      {savedLines[index + 1] && (
-                        <Bookmark 
-                          size={16} 
-                          className="position-absolute end-0 top-50 translate-middle-y text-primary" 
-                          fill="currentColor"
-                        />
-                      )}
-                      {playingVerse === index + 1 && (
-                        <Volume2 
-                          size={16} 
-                          className="position-absolute end-0 top-50 translate-middle-y text-info" 
-                        />
-                      )}
-                    </div>
-                  ) : null
-                ))}
-                <p className="mt-3 small text-center text-muted">
-                  {chapterContent.reference} ({chapterContent.translation})
-                </p>
-              </div>
-            ) : (
-              <p className="text-center py-4">Loading chapter content...</p>
-            )}
+  <div className="bible-text p-3">
+    {(() => {
+      // Process the text to combine verses based on punctuation
+      const lines = chapterContent.text.split('\n').filter(line => line.trim());
+      let currentVerseContent = [];
+      let currentVerseNumber = 1;
+      let verses = [];
+
+      // Process each line to create verse objects
+      lines.forEach((line, index) => {
+        const verseNum = index + 1;
+        
+        // Check if we need to start a new verse based on punctuation
+        // This creates a new paragraph after sentences ending with . ? or !
+        if (currentVerseContent.length > 0 && 
+            (line.match(/^[A-Z]/) || 
+             currentVerseContent[currentVerseContent.length - 1].match(/[.!?]$/))) {
+          verses.push({
+            number: currentVerseNumber,
+            content: currentVerseContent.join(' '),
+            highlighted: highlightedLines[currentVerseNumber],
+            saved: savedLines[currentVerseNumber],
+            isPlaying: playingVerse === currentVerseNumber
+          });
+          currentVerseContent = [line];
+          currentVerseNumber = verseNum;
+        } else {
+          // Continue the current verse
+          currentVerseContent.push(line);
+          if (currentVerseNumber === verseNum - 1) {
+            currentVerseNumber = verseNum;
+          }
+        }
+      });
+
+      // Add the last verse if there is content
+      if (currentVerseContent.length > 0) {
+        verses.push({
+          number: currentVerseNumber,
+          content: currentVerseContent.join(' '),
+          highlighted: highlightedLines[currentVerseNumber],
+          saved: savedLines[currentVerseNumber],
+          isPlaying: playingVerse === currentVerseNumber
+        });
+      }
+
+      // Render the processed verses
+      return verses.map((verse, index) => (
+        <div 
+          key={index} 
+          className={`mb-3 position-relative
+            ${selectedLine === verse.number ? 'bg-primary bg-opacity-10' : ''}
+            ${verse.isPlaying ? 'bg-info bg-opacity-10' : ''}
+            ${verse.highlighted ? 'bg-warning bg-opacity-10' : ''}
+            ${verse.saved ? 'border-start border-secondary border-3 ps-2' : ''}
+          `}
+          onClick={(e) => handleLineClick(verse.number, e)}
+        >
+          <span className="bible-verse-content">
+            <sup className="fw-bold text-danger me-1">{verse.number}</sup>
+            {verse.content}
+          </span>
+          
+          {verse.saved && (
+            <Bookmark 
+              size={16} 
+              className="position-absolute end-0 top-50 translate-middle-y text-primary" 
+              fill="currentColor"
+            />
+          )}
+          {verse.isPlaying && (
+            <Volume2 
+              size={16} 
+              className="position-absolute end-0 top-50 translate-middle-y text-info" 
+            />
+          )}
+        </div>
+      ));
+    })()}
+    <p className="mt-3 small text-center text-muted">
+      {chapterContent.reference} ({chapterContent.translation})
+    </p>
+  </div>
+) : (
+  <p className="text-center py-4">Loading chapter content...</p>
+)}
 
             {/* Selection Toolbar */}
             {selectedLine !== null && (
